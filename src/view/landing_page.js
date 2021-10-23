@@ -1,4 +1,4 @@
-import AppStreamCam from '../util/camera';
+import AppStreamCam from '../view_model/camera_logic';
 
 function LandingPage() {
     return <div>
