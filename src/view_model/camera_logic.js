@@ -11,6 +11,8 @@ class AppStreamCam extends React.Component {
       this.state = {
         img: ''
       }
+
+      this.streamCamVideo()
     }
     streamCamVideo() {
       var constraints = { audio: true, video: { width: 1280, height: 720 } };
@@ -52,10 +54,9 @@ class AppStreamCam extends React.Component {
       return (
         <div>
           <div id="container">
-            <video autoPlay={true} id="videoElement" controls></video> 
+            <video muted ={true} autoPlay={true} id="videoElement" onTimeUpdate={this.showPic}></video> 
           </div>
           <br/>
-          <button onClick={this.streamCamVideo}>Start streaming</button>
           <button onClick={this.showPic}>Take Picture</button>
         </div>
       );
