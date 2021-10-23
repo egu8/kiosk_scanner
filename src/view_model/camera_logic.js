@@ -1,6 +1,7 @@
 // Media Handler class
 import React from "react";
 import sendPic from "../model/camera_detection"
+import drawImage from "../util/camera";
 
 class AppStreamCam extends React.Component {
     constructor(props) {
@@ -20,7 +21,11 @@ class AppStreamCam extends React.Component {
         .getUserMedia(constraints)
         .then(function(mediaStream) {
           var video = document.querySelector("video");
-  
+          
+          video.onplay = function() {
+            setTimeout(drawImage , 1);
+           }
+
           video.srcObject = mediaStream;
           video.onloadedmetadata = function(e) {
             video.play();
@@ -34,16 +39,18 @@ class AppStreamCam extends React.Component {
     showPic() {
         var video = document.querySelector("video");
 
+        const scale = 0.1
+
         var canvas = document.createElement("canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth * scale ;
+        canvas.height = video.videoHeight * scale ;
         canvas.getContext('2d')
                 .drawImage(video, 0, 0, canvas.width, canvas.height);
         this.setState( {
             img: canvas.toDataURL()
         })
 
-        this.sendPic();
+        // this.sendPic();
     }
 
     sendPic() {
@@ -54,10 +61,10 @@ class AppStreamCam extends React.Component {
       return (
         <div>
           <div id="container">
-            <video muted ={true} autoPlay={true} id="videoElement" onTimeUpdate={this.showPic}></video> 
+            <video style={{width: 1 }} muted ={true} autoPlay={true} id="videoElement" onTimeUpdate={this.showPic} ></video> 
+            <canvas id="videoCanvas"></canvas>
           </div>
           <br/>
-          <button onClick={this.showPic}>Take Picture</button>
         </div>
       );
     }
