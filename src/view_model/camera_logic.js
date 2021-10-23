@@ -1,13 +1,12 @@
 // Media Handler class
 import React from "react";
-
+import sendPic from "../model/camera_detection"
 
 class AppStreamCam extends React.Component {
     constructor(props) {
       super(props);
       this.streamCamVideo= this.streamCamVideo.bind(this);
       this.showPic = this.showPic.bind(this);
-      this.yeet = this.yeet.bind(this);
 
       this.state = {
         img: ''
@@ -41,23 +40,23 @@ class AppStreamCam extends React.Component {
         this.setState( {
             img: canvas.toDataURL()
         })
+
+        this.sendPic();
     }
 
-    takePic() {
-        const img = document.getElementById("my-screenshot");
-        img.setAttribute("src", this.state.img);
+    sendPic() {
+        sendPic(this.state.img);
     }
+
     render() {
       return (
         <div>
           <div id="container">
             <video autoPlay={true} id="videoElement" controls></video> 
           </div>
-          <img id="my-screenshot" alt="pain"/>
           <br/>
           <button onClick={this.streamCamVideo}>Start streaming</button>
           <button onClick={this.showPic}>Take Picture</button>
-          <button onClick={this.takePic}>Show Picture</button>
         </div>
       );
     }
