@@ -10,7 +10,7 @@ class AppStreamCam extends React.Component {
       this.showPic = this.showPic.bind(this);
 
       this.state = {
-        img: ''
+        imgs: []
       }
 
       this.streamCamVideo()
@@ -39,22 +39,27 @@ class AppStreamCam extends React.Component {
     showPic() {
         var video = document.querySelector("video");
 
-        const scale = 0.1
+        const scale = 0.5
 
         var canvas = document.createElement("canvas");
         canvas.width = video.videoWidth * scale ;
         canvas.height = video.videoHeight * scale ;
         canvas.getContext('2d')
                 .drawImage(video, 0, 0, canvas.width, canvas.height);
-        this.setState( {
-            img: canvas.toDataURL()
-        })
-
-        // this.sendPic();
+        this.setState({
+            imgs: [...this.state.imgs, canvas.toDataURL()]
+            })
+        
+        if (this.state.imgs.length === 16) {
+            this.sendPic()
+        }
     }
 
     sendPic() {
-        sendPic(this.state.img);
+        sendPic(this.state.imgs);
+        this.setState({
+            imgs: []
+            })
     }
 
     render() {
