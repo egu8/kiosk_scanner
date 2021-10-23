@@ -1,8 +1,10 @@
 import React from "react";
+
 class AppStreamCam extends React.Component {
     constructor(props) {
       super(props);
-      this.streamCamVideo= this.streamCamVideo.bind(this)
+      this.streamCamVideo= this.streamCamVideo.bind(this);
+      this.showPic = this.showPic.bind(this);
     }
     streamCamVideo() {
       var constraints = { audio: true, video: { width: 1280, height: 720 } };
@@ -20,14 +22,29 @@ class AppStreamCam extends React.Component {
           console.log(err.name + ": " + err.message);
         }); // always check for errors at the end.
     }
+
+    showPic() {
+        var video = document.querySelector("video");
+
+        var canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d')
+                .drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        const img = document.getElementById("my-screenshot");
+        img.setAttribute("src", canvas.toDataURL());
+    }
     render() {
       return (
         <div>
           <div id="container">
-            <video autoPlay={true} id="videoElement" controls></video>
+            <video autoPlay={true} id="videoElement" controls></video> 
           </div>
+          <img id="my-screenshot" alt="pain"/>
           <br/>
           <button onClick={this.streamCamVideo}>Start streaming</button>
+          <button onClick={this.showPic}>Take Picture</button>
         </div>
       );
     }
