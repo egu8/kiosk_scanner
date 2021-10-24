@@ -27,7 +27,7 @@ class BasicTable extends React.Component{
     render() {
         return (
             <TableContainer component={Paper}>
-              <Table sx={{ /* minWidth: 600, */ width: 600 }} aria-label="simple table">
+              <Table sx={{ /* minWidth: 600, */ width: '600px' }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Name </TableCell>
