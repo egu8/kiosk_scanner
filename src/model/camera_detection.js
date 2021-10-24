@@ -1,6 +1,9 @@
+import { useHistory } from "react-router-dom";
 const axios = require('axios');
 
 var count = 0;
+
+
 
 function sendPic(data) {
     // Make a request for a user with a given ID
@@ -39,6 +42,10 @@ function sendPic(data) {
 
       const option = data["0"]
       console.log(option)
+
+      // if (option == '')
+      // history.push("/home")
+
     })
     .catch(function (error) {
       // handle error
