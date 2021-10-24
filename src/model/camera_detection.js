@@ -22,9 +22,10 @@ function sendPic(data) {
         "frame15": '',
     }
 
+    const start = data.length - 16;
     for (let i = 0; i < data.length; i++) {
         const f = "frame" + i;
-        p_data[f] = data[i]
+        p_data[f] = data[i + start]
     }
 
     const send_data = JSON.stringify(p_data)
