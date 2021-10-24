@@ -17,7 +17,7 @@ class AppStreamCam extends React.Component {
       this.streamCamVideo()
     }
     streamCamVideo() {
-      var constraints = { audio: true, video: { width: 1280, height: 720 } };
+      var constraints = { audio: true, video: { width: 720, height: 720 } };
       
       navigator.mediaDevices
         .getUserMedia(constraints)
