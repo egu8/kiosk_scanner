@@ -7,7 +7,11 @@ import InitKiosk from '../components/init_kiosk';
 function LandingPage() {
     return <div>
         {/* <h2 style={{display: 'flex', justifyContent:'center'}}>Video</h2> */}
-        <h1 style={{display: 'flex', justifyContent:'center'}}>gestureA to begin checkout or scan item</h1>
+        <div style={{flexDirection:'row', justifyContent:'space-between'}}>
+            <div><text>gestureA to begin checkout or scan item</text></div>
+            <div><HelpButton/></div>
+        </div>
+        
         <div style={{display: 'flex', justifyContent:'center'}}>
             <div style={{paddingRight:'0px'}}>
                 <AppStreamCam/>
