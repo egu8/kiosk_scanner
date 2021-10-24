@@ -35,7 +35,10 @@ function sendPic(data) {
     axios.post('http://127.0.0.1:8000/process_frames', p_data)
     .then(function (response) {
       // handle success
-      console.log(response);
+      const data = JSON.parse(response.data)
+
+      const option = data["0"]
+      console.log(option)
     })
     .catch(function (error) {
       // handle error
@@ -60,7 +63,13 @@ function sendbarCode(data) {
   axios.post('http://127.0.0.1:8000/barcode', p_data)
   .then(function (response) {
     // handle success
-    console.log(response);
+    const data = JSON.parse(response.data)
+
+    const item_name = data["item_name"]
+    const price = data["price"]
+
+    console.log(item_name)
+    console.log(price)
   })
   .catch(function (error) {
     // handle error
