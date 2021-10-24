@@ -2,6 +2,7 @@ import AppStreamCam from '../view_model/camera_logic';
 import HelpButton from '../components/help_button.js';
 import PayCardButton from '../components/payCard_button.js';
 import PayCashButton from '../components/payCash_button.js';
+import InitKiosk from '../components/init_kiosk';
 
 function LandingPage() {
     return <div>
@@ -22,6 +23,11 @@ function LandingPage() {
                 <div style={{padding:'0px 15px'}}>
                     <PayCashButton/>
                 </div>
+
+                <div style={{padding:'0px 15px'}}>
+                    <InitKiosk/>
+                </div>
+
             </div>
             
         </div>
