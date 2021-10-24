@@ -73,7 +73,9 @@ class AppStreamCam extends React.Component {
               if (frames.length >= 16) {
                 sendPic(frames).then( (option) => {
                   console.log(option)
-                  this.props.handleAction(option[0])
+                  if (option[1] > 0.7){
+                    this.props.handleAction(option[0])
+                  }
                   // this.setState( {
                   //   latest_action: option[0]
                   // })
@@ -82,7 +84,10 @@ class AppStreamCam extends React.Component {
                   console.log(error);
                 })    
                 sendbarCode(frames).then ((data) => {
-                  this.props.handleItems(data)
+                  if (data) {
+                    this.props.handleItems(data)
+                  }
+                  
                   // if (data) {
                   //   console.log(data)
                   //   const item_name = data["item_name"]

@@ -5,6 +5,7 @@ import PayCashButton from '../components/payCash_button.js';
 import InitKiosk from '../components/init_kiosk';
 import React from 'react';
 import { withRouter } from 'react-router';
+import BasicTable from '../components/table';
 
 class CheckoutPage extends React.Component {
     constructor(props) {
@@ -36,7 +37,6 @@ class CheckoutPage extends React.Component {
     }
 
     handleItems (data) {
-        console.log(data)
         const item_name = data["item_name"]
         const price = data["price"]
 
@@ -44,7 +44,7 @@ class CheckoutPage extends React.Component {
         console.log(price)
         if (item_name !== "n/a") {
           this.setState( {
-            list_of_items: [...this.list_of_items, [item_name, price]]
+            list_of_items: [...this.state.list_of_items, {name:item_name, price:price}]
           })
 
           console.log(this.state.list_of_items)
@@ -73,6 +73,9 @@ class CheckoutPage extends React.Component {
                 </div>
                 <div style={{padding:'0px 15px'}}>
                     <PayCashButton/>
+                </div>
+                <div style={{padding:'0px 15px'}}>
+                    <BasicTable list_of_items={this.state.list_of_items}/>
                 </div>
 
                 {/* <div class="itemCard">

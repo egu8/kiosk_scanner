@@ -70,14 +70,9 @@ function sendbarCode(data) {
     const item_name = data["item_name"]
     const price = data["price"]
 
+    console.log(data)
+
     return data
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
   });
   } else {
     count = count + 1;
