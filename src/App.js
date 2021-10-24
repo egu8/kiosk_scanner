@@ -5,6 +5,7 @@ import LandingPage from "./view/landing_page";
 import HelpPage from "./components/help_page";
 import CardPay from "./components/payCard_page";
 import CashPay from "./components/payCash_page";
+import CheckoutPage from "./view/checkout_page";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/help"><HelpPage /></Route>
         <Route path="/pay1card"><CardPay /></Route>
         <Route path="/pay2cash"><CashPay /></Route>
+        <Route path="/checkout"><CheckoutPage /></Route>
 
       </div>
     </Router>

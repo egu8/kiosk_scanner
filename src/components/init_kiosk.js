@@ -1,23 +1,24 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 
 class InitKiosk extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isToggleOn: true};
+        this.state = {activeState: false};
     
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
         this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
+            activeState: !prevState.activeState
         }));
     }
 
     render() {
         return (
-            <button onClick={this.handleClick} style={{
+            <Link to="/checkout">
+                <button onClick={this.handleClick} style={{
                 backgroundColor: 'green',
                 color: 'white',
                 fontSize: '20px',
@@ -32,8 +33,10 @@ class InitKiosk extends React.Component {
                 fontFamily: "sans-serif",
                 width: '300px',
                 }}>
-                {this.state.isToggleOn ? 'Begin Checkout' : 'Cancel Checkout'}
+                {this.state.activeState ? 'Cancel Checkout' : 'Begin Checkout'}
             </button>
+            </Link>
+            
         );
     }
 }
