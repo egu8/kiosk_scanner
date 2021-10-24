@@ -6,7 +6,6 @@ function LandingPage() {
         <div>
             <HelpButton/>
         </div>
-        
         <div>
             <h2>Video</h2>
             <AppStreamCam/>
@@ -14,5 +13,4 @@ function LandingPage() {
         
     </div>;
 }
-
 export default LandingPage;
