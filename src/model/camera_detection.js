@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+var count = 0;
+
 function sendPic(data) {
     // Make a request for a user with a given ID
 
@@ -30,8 +32,6 @@ function sendPic(data) {
 
     const send_data = JSON.stringify(p_data)
 
-    console.log(send_data)
-
     axios.post('http://127.0.0.1:8000/process_frames', p_data)
     .then(function (response) {
       // handle success
@@ -46,4 +46,34 @@ function sendPic(data) {
     });
 }
 
-export default sendPic;
+function sendbarCode(data) {
+
+  if (count == 10) {
+    let p_data = {
+      "img": '',
+    }
+  
+  p_data["img"] = data[data.length - 1];
+  
+  const send_data = JSON.stringify(p_data)
+  
+  axios.post('http://127.0.0.1:8000/barcode', p_data)
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+  count = 0
+  } else {
+    count = count + 1;
+  }
+
+}
+
+export {sendPic, sendbarCode};
