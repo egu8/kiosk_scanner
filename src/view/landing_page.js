@@ -51,9 +51,11 @@ class LandingPage extends React.Component{
     render() {
         return <div>
         {/* <h2 style={{display: 'flex', justifyContent:'center'}}>Video</h2> */}
-        <div style={{flexDirection:'row', justifyContent:'space-between'}}>
-            <div><text>gestureA to begin checkout or scan item</text></div>
-            <div><HelpButton/></div>
+        <div style={{display:'flex', justifyContent:'center'}}>
+            {/* <div><text>gestureA to begin checkout or scan item</text></div>
+            <div><HelpButton/></div> */}
+            <h1>gestureA to begin checkout or scan item</h1>
+
         </div>
         
         <div style={{display: 'flex', justifyContent:'center'}}>
