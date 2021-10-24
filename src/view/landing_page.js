@@ -19,21 +19,26 @@ class LandingPage extends React.Component{
       }
     
 
-    handleAction (action) {
+    handleAction (option) {
+
+        const action = option[0]
+        const confidence = option[1]
+
+        const { history: { push } } = this.props;
+        if (action == "Swiping_Left" && confidence > 0.15) {
+            push("/checkout");
+        } else if (action == "Swiping_Up" && confidence > 0.25) {
+            push("/pay1card")
+        } else if (action == "Swiping_Down" && confidence > 0.25) {
+            push("/pay2cash")
+        } else if (action == "Stop_Sign" && confidence > 0.75) {
+            push("/help")
+        }
 
         this.setState( {
             latest_action: action
         })
-        const { history: { push } } = this.props;
-        if (action == "Swiping_Left") {
-            push("/checkout");
-        } else if (action == "Swiping_Up") {
-            push("/pay1card")
-        } else if (action == "Swiping_Down") {
-            push("/pay2cash")
-        } else if (action == "Stop_Sign") {
-            push("/help")
-        }
+
     }
 
     handleItems (data) {

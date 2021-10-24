@@ -30,7 +30,7 @@ class AppStreamCam extends React.Component {
             var canvas = document.querySelector("#videoCanvas1");
             var ctx = canvas.getContext('2d');
 
-            const aspect_ratio = 0.4
+            const aspect_ratio = 0.3
 
             var canvas2 = document.querySelector("#videoCanvas2");
             var ctx2 = canvas2.getContext('2d');
@@ -73,9 +73,9 @@ class AppStreamCam extends React.Component {
               if (frames.length >= 16) {
                 sendPic(frames).then( (option) => {
                   console.log(option)
-                  if (option[1] > 0.7){
-                    this.props.handleAction(option[0])
-                  }
+                  
+                  this.props.handleAction(option)
+              
                   // this.setState( {
                   //   latest_action: option[0]
                   // })
