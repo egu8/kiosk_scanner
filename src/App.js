@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import LandingPage from "./view/landing_page";
 import HelpPage from "./view/help_page";
@@ -10,15 +7,10 @@ import HelpPage from "./view/help_page";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="page content">
 
-          
-            <Route path="/" ><LandingPage /></Route>
-            <Route path="/help"><HelpPage /></Route>
-          
-          {/* 
-          <Route path='/' component={LandingPage} />
-          <Route path='help' component={HelpPage} /> */}
+        <Route exact path="/" ><LandingPage /></Route>
+        <Route path="/help"><HelpPage /></Route>
 
       </div>
     </Router>

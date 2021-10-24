@@ -1,3 +1,5 @@
+//to draw "crosshair" / gesture window
+
 function drawImge() {
     var video = document.querySelector("video");
     var canvas = document.querySelector("#videoCanvas");
