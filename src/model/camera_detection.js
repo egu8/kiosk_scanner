@@ -53,7 +53,7 @@ async function sendPic(data) {
 
 function sendbarCode(data) {
 
-  if (count == 10) {
+  if (count == 5) {
     let p_data = {
       "img": '',
     }

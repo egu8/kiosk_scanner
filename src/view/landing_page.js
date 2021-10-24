@@ -25,13 +25,13 @@ class LandingPage extends React.Component{
         const confidence = option[1]
 
         const { history: { push } } = this.props;
-        if (action == "Swiping_Left" && confidence > 0.15) {
+        if (action == "Thumb_Up" && confidence > 0.4) {
             push("/checkout");
-        } else if (action == "Swiping_Up" && confidence > 0.25) {
+        } else if (action == "Swiping_Up" && confidence > 0.3) {
             push("/pay1card")
-        } else if (action == "Swiping_Down" && confidence > 0.25) {
+        } else if (action == "Swiping_Down" && confidence > 0.45) {
             push("/pay2cash")
-        } else if (action == "Stop_Sign" && confidence > 0.75) {
+        } else if (action == "Stop_Sign" && confidence > 0.9) {
             push("/help")
         }
 
