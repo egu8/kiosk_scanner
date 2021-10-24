@@ -17,12 +17,22 @@ function CheckoutPage() {
                 <div style={{padding:'8px 15px 0px'}}>
                     <HelpButton/>
                 </div>
+
                 <div style={{padding:'0px 15px'}}>
                     <PayCardButton/>
                 </div>
                 <div style={{padding:'0px 15px'}}>
                     <PayCashButton/>
                 </div>
+
+                {/* <div class="itemCard">
+                    <ItemsList items={this.state.items} />
+                </div> */}
+
+                {/* <div style={{display: 'flex', padding:'0px 15px'}}>
+                    <PayCardButton/>
+                    <PayCashButton/>
+                </div> */}
 
                 {/* <div style={{padding:'0px 15px'}}>
                     <InitKiosk/>
