@@ -3,14 +3,56 @@ import HelpButton from '../components/help_button.js';
 import PayCardButton from '../components/payCard_button.js';
 import PayCashButton from '../components/payCash_button.js';
 import InitKiosk from '../components/init_kiosk';
+import React from 'react';
 
-function LandingPage() {
-    return <div>
+import { withRouter } from 'react-router'
+
+class LandingPage extends React.Component{
+    constructor(props) {
+        super(props);
+        this.handleAction= this.handleAction.bind(this);
+        this.handleItems = this.handleItems.bind(this);
+        this.state = {
+            latest_action: 'No_gesture',
+            list_of_items: []
+          }
+      }
+    
+
+    handleAction (action) {
+
+        this.setState( {
+            latest_action: action
+        })
+
+        if (action == "Swiping_Left") {
+            const { history: { push } } = this.props;
+            push("/checkout");
+        }
+    }
+
+    handleItems (data) {
+        console.log(data)
+        const item_name = data["item_name"]
+        const price = data["price"]
+
+        if (item_name !== "n/a") {
+          this.setState( {
+            list_of_items: [...this.list_of_items, [item_name, price]]
+          })
+        }
+    }
+
+    render() {
+        return <div>
         {/* <h2 style={{display: 'flex', justifyContent:'center'}}>Video</h2> */}
         <h1 style={{display: 'flex', justifyContent:'center'}}>gestureA to begin checkout or scan item</h1>
         <div style={{display: 'flex', justifyContent:'center'}}>
             <div style={{paddingRight:'0px'}}>
-                <AppStreamCam/>
+                <AppStreamCam
+                    handleAction={this.handleAction}
+                    handleItems={this.handleItems}
+                          />
             </div>
 
             <div style={{alignItems:'center', width:'100%'}}>
@@ -31,8 +73,8 @@ function LandingPage() {
             </div>
             
         </div>
-        
-        
     </div>;
+    }
+
 }
-export default LandingPage;
+export default withRouter(LandingPage);

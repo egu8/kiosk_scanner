@@ -1,3 +1,4 @@
+import { array } from "prop-types";
 import { useHistory } from "react-router-dom";
 const axios = require('axios');
 
@@ -5,7 +6,7 @@ var count = 0;
 
 
 
-function sendPic(data) {
+async function sendPic(data) {
     // Make a request for a user with a given ID
 
     let p_data = {
@@ -35,25 +36,19 @@ function sendPic(data) {
 
     const send_data = JSON.stringify(p_data)
 
-    axios.post('http://127.0.0.1:8000/process_frames', p_data)
+    return axios.post('http://127.0.0.1:8000/process_frames', p_data)
     .then(function (response) {
       // handle success
       const data = JSON.parse(response.data)
 
       const option = data["0"]
-      console.log(option)
+
+      return option
 
       // if (option == '')
       // history.push("/home")
 
     })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
 }
 
 function sendbarCode(data) {
@@ -66,8 +61,8 @@ function sendbarCode(data) {
   p_data["img"] = data[data.length - 1];
   
   const send_data = JSON.stringify(p_data)
-  
-  axios.post('http://127.0.0.1:8000/barcode', p_data)
+  count = 0
+  return axios.post('http://127.0.0.1:8000/barcode', p_data)
   .then(function (response) {
     // handle success
     const data = JSON.parse(response.data)
@@ -75,8 +70,7 @@ function sendbarCode(data) {
     const item_name = data["item_name"]
     const price = data["price"]
 
-    console.log(item_name)
-    console.log(price)
+    return data
   })
   .catch(function (error) {
     // handle error
@@ -85,9 +79,13 @@ function sendbarCode(data) {
   .then(function () {
     // always executed
   });
-  count = 0
   } else {
     count = count + 1;
+
+    const myPromise = new Promise((resolve, reject) => {
+        resolve(null)
+    });
+    return myPromise
   }
 
 }

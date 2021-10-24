@@ -10,7 +10,7 @@ function CheckoutPage() {
         <h1 style={{display: 'flex', justifyContent:'center'}}>Scan item or gestureB to finish</h1>
         <div style={{display: 'flex', justifyContent:'center'}}>
             <div style={{paddingRight:'0px'}}>
-                <AppStreamCam/>
+                <AppStreamCam />
             </div>
 
             <div style={{alignItems:'center', width:'100%'}}>

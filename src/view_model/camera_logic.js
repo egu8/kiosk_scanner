@@ -10,15 +10,16 @@ class AppStreamCam extends React.Component {
       this.streamCamVideo= this.streamCamVideo.bind(this);
 
       this.state = {
-        bar_counter: 0
+        latest_action: 'No_gesture',
+        list_of_items: []
       }
 
       this.streamCamVideo()
     }
-    streamCamVideo() {
+    async streamCamVideo() {
       var constraints = { audio: true, video: { width: 720, height: 720 } };
       
-      navigator.mediaDevices
+      await navigator.mediaDevices
         .getUserMedia(constraints)
         .then((mediaStream) => {
           var video = document.querySelector("video");
@@ -62,22 +63,47 @@ class AppStreamCam extends React.Component {
         
             setTimeout(drawImge , 1);
         }
-          video.onplay = function() {
+          video.onplay = () => {
             setTimeout(drawImge , 1);
            }
 
           video.srcObject = mediaStream;
 
-          video.ontimeupdate = function () {
+          video.ontimeupdate = () => {
               if (frames.length >= 16) {
-                sendPic(frames)
-                sendbarCode(frames)
+                sendPic(frames).then( (option) => {
+                  console.log(option)
+                  this.props.handleAction(option[0])
+                  // this.setState( {
+                  //   latest_action: option[0]
+                  // })
+                }).catch((error) => {
+                  // handle error
+                  console.log(error);
+                })    
+                sendbarCode(frames).then ((data) => {
+                  // this.props.handleItems(data)
+                  // if (data) {
+                  //   console.log(data)
+                  //   const item_name = data["item_name"]
+                  //   const price = data["price"]
+
+                  //   if (item_name !== "n/a") {
+                  //     this.setState( {
+                  //       list_of_items: [...this.list_of_items, [item_name, price]]
+                  //     })
+                  //   }
+                  // }
+                }).catch((error) => {
+                  // handle error
+                  console.log(error);
+                }) 
                 frames = []
               }
           }
 
         })
-        .catch(function(err) {
+        .catch((err) => {
           console.log(err.name + ": " + err.message);
         }); // always check for errors at the end.
     }
