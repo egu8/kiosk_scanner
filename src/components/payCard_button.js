@@ -5,7 +5,23 @@ class PayCardButton extends React.Component {
     render() {
         return (
             <Link to="/pay1card">
-                <button style={{}}>Credit or Debit</button>
+                <button style={{
+                    backgroundColor: 'DodgerBlue',
+                    color: 'white',
+                    fontSize: '20px',
+                    paddingTop: '12px',
+                    paddingBottom: '12px',
+                    paddingRight: '60px',
+                    paddingLeft: '60px',
+                    borderRadius: '5px',
+                    marginTop: '10px',
+                    marginBottom: '10px',
+                    cursor: "pointer",
+                    fontFamily: "sans-serif",
+                    width: '300px',
+                    }}>
+                    Credit or Debit
+                </button>
             </Link>
         );
     }

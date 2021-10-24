@@ -11,10 +11,10 @@ function App() {
     <Router>
       <div className="page content">
 
-        <Route exact path="/" > <LandingPage /></Route>
-        <Route path="/help">    <HelpPage /></Route>
-        <Route path="/pay1card"> <CardPay /></Route>
-        <Route path="/pay2cash"> <CashPay /></Route>
+        <Route exact path="/" ><LandingPage /></Route>
+        <Route path="/help"><HelpPage /></Route>
+        <Route path="/pay1card"><CardPay /></Route>
+        <Route path="/pay2cash"><CashPay /></Route>
 
       </div>
     </Router>

@@ -8,18 +8,18 @@ function LandingPage() {
         {/* <h2 style={{display: 'flex', justifyContent:'center'}}>Video</h2> */}
         <h1 style={{display: 'flex', justifyContent:'center'}}>gestureA to begin checkout or scan item</h1>
         <div style={{display: 'flex', justifyContent:'center'}}>
-            <div style={{paddingRight:'50px'}}>
+            <div style={{paddingRight:'0px'}}>
                 <AppStreamCam/>
             </div>
 
-            <div style={{alignItems:'center'}}>
-                <div style={{padding:'15px'}}>
+            <div style={{alignItems:'center', width:'100%'}}>
+                <div style={{padding:'8px 15px 0px'}}>
                     <HelpButton/>
                 </div>
-                <div style={{padding:'15px'}}>
+                <div style={{padding:'0px 15px'}}>
                     <PayCardButton/>
                 </div>
-                <div style={{padding:'15px'}}>
+                <div style={{padding:'0px 15px'}}>
                     <PayCashButton/>
                 </div>
             </div>
