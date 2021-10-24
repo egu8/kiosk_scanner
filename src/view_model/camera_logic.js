@@ -10,7 +10,8 @@ class AppStreamCam extends React.Component {
       this.showPic = this.showPic.bind(this);
 
       this.state = {
-        imgs: []
+        imgs: [],
+        counter: 0
       }
 
       this.streamCamVideo()
@@ -51,14 +52,28 @@ class AppStreamCam extends React.Component {
             })
         
         if (this.state.imgs.length === 16) {
-            this.sendPic()
+            if (this.state.counter === 8) {
+              this.sendPic()
+              this.setState((state) => ({
+                counter:  0
+              }));
+            } else {
+              
+              this.setState((state) => ({
+                counter:  state.counter + 1
+              }));
+            }
+
+            this.setState({
+              imgs: this.state.imgs.slice(1)
+              })
         }
     }
 
     sendPic() {
         sendPic(this.state.imgs);
         this.setState({
-            imgs: []
+            imgs: this.state.imgs.slice(1)
             })
     }
 
