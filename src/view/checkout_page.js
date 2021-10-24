@@ -4,10 +4,10 @@ import PayCardButton from '../components/payCard_button.js';
 import PayCashButton from '../components/payCash_button.js';
 import InitKiosk from '../components/init_kiosk';
 
-function LandingPage() {
+function CheckoutPage() {
     return <div>
         {/* <h2 style={{display: 'flex', justifyContent:'center'}}>Video</h2> */}
-        <h1 style={{display: 'flex', justifyContent:'center'}}>gestureA to begin checkout or scan item</h1>
+        <h1 style={{display: 'flex', justifyContent:'center'}}>Scan item or gestureB to finish</h1>
         <div style={{display: 'flex', justifyContent:'center'}}>
             <div style={{paddingRight:'0px'}}>
                 <AppStreamCam/>
@@ -24,9 +24,9 @@ function LandingPage() {
                     <PayCashButton/>
                 </div>
 
-                <div style={{padding:'0px 15px'}}>
+                {/* <div style={{padding:'0px 15px'}}>
                     <InitKiosk/>
-                </div>
+                </div> */}
 
             </div>
             
@@ -35,4 +35,4 @@ function LandingPage() {
         
     </div>;
 }
-export default LandingPage;
+export default CheckoutPage;
