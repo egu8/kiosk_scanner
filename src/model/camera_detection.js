@@ -48,7 +48,7 @@ function sendPic(data) {
 
 function sendbarCode(data) {
 
-  if (count == 5) {
+  if (count == 10) {
     let p_data = {
       "img": '',
     }

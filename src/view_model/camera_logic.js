@@ -16,7 +16,7 @@ class AppStreamCam extends React.Component {
       this.streamCamVideo()
     }
     streamCamVideo() {
-      var constraints = { audio: true, video: { width: 112, height: 112 } };
+      var constraints = { audio: true, video: { width: 720, height: 720 } };
       
       navigator.mediaDevices
         .getUserMedia(constraints)
@@ -26,32 +26,39 @@ class AppStreamCam extends React.Component {
           var frames = []
           function drawImge() {
             var video = document.querySelector("video");
-            var canvas = document.querySelector("#videoCanvas");
+            var canvas = document.querySelector("#videoCanvas1");
             var ctx = canvas.getContext('2d');
 
-            // var canvas2 = document.createElement("canvas");
-            // var ctx2 = canvas.getContext('2d');
+            const aspect_ratio = 0.4
+
+            var canvas2 = document.querySelector("#videoCanvas2");
+            var ctx2 = canvas2.getContext('2d');
         
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
 
-            // canvas2.width = 300;
-            // canvas2.height = 300;
-        
+            canvas2.width = video.videoWidth * aspect_ratio;
+            canvas2.height = video.videoHeight * aspect_ratio;
+
+            var sw = canvas2.width;
+            var sh = canvas2.height;
+            var sX=canvas.width/2 - sw/2;
+            var sY=canvas.height/2 - sh/2;
         
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            // ctx2.drawImage(video, canvas.width/2 - faceArea/2, canvas.height/2 - faceArea/2, canvas2.width, canvas2.height);
+            ctx2.drawImage(video, sX, sY, sw, sh, 0, 0, canvas2.width, canvas2.height);
 
-            frames = [...frames, canvas.toDataURL()]
+            frames = [...frames, canvas2.toDataURL()]
         
-            var faceArea = 300;
-            var pX=canvas.width/2 - faceArea/2;
-            var pY=canvas.height/2 - faceArea/2;
-        
-            ctx.rect(pX,pY,faceArea,faceArea);
+            ctx.rect(sX,sY,sw,sh);
             ctx.lineWidth = "6";
             ctx.strokeStyle = "red";    
             ctx.stroke();
+
+            ctx2.rect(1,1,1,1);
+            ctx2.lineWidth = "1";
+            ctx2.strokeStyle = "black";    
+            ctx2.stroke();
         
             setTimeout(drawImge , 1);
         }
@@ -79,8 +86,9 @@ class AppStreamCam extends React.Component {
       return (
         <div>
           <div id="container">
-            <video style={{width: 720 }} muted ={true} autoPlay={true} id="videoElement"></video> 
-            <canvas  style={{width: 1 }} id="videoCanvas"></canvas>
+            <video style={{width: 1 }} muted ={true} autoPlay={true} id="videoElement"></video> 
+            <canvas  id="videoCanvas1"></canvas>
+            <canvas  style={{width: 1 }} id="videoCanvas2"></canvas>
           </div>
           <br/>
         </div>
