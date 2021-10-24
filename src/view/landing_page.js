@@ -70,12 +70,12 @@ class LandingPage extends React.Component{
                 <div style={{padding:'8px 15px 0px'}}>
                     <HelpButton/>
                 </div>
-                <div style={{padding:'0px 15px'}}>
+                {/* <div style={{padding:'0px 15px'}}>
                     <PayCardButton/>
                 </div>
                 <div style={{padding:'0px 15px'}}>
                     <PayCashButton/>
-                </div>
+                </div> */}
 
                 <div style={{padding:'0px 15px'}}>
                     <InitKiosk/>
