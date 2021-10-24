@@ -24,10 +24,15 @@ class LandingPage extends React.Component{
         this.setState( {
             latest_action: action
         })
-
+        const { history: { push } } = this.props;
         if (action == "Swiping_Left") {
-            const { history: { push } } = this.props;
             push("/checkout");
+        } else if (action == "Swiping_Up") {
+            push("/pay1card")
+        } else if (action == "Swiping_Down") {
+            push("/pay2cash")
+        } else if (action == "Stop_Sign") {
+            push("/help")
         }
     }
 

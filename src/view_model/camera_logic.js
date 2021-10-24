@@ -82,7 +82,7 @@ class AppStreamCam extends React.Component {
                   console.log(error);
                 })    
                 sendbarCode(frames).then ((data) => {
-                  // this.props.handleItems(data)
+                  this.props.handleItems(data)
                   // if (data) {
                   //   console.log(data)
                   //   const item_name = data["item_name"]
