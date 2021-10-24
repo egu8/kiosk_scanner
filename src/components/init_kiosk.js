@@ -45,7 +45,7 @@ class InitKiosk extends React.Component {
                     width: '300px',
                     }}>
                     {this.state.activeState ? 'Cancel Checkout' : 'Begin Checkout'}
-                </button>,
+                </button>
             </Link>
             
         );

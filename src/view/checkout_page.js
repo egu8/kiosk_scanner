@@ -2,6 +2,7 @@ import AppStreamCam from '../view_model/camera_logic';
 import HelpButton from '../components/help_button.js';
 import PayCardButton from '../components/payCard_button.js';
 import PayCashButton from '../components/payCash_button.js';
+import CancelButton from '../components/cancel_button';
 import InitKiosk from '../components/init_kiosk';
 import React from 'react';
 import { withRouter } from 'react-router';
@@ -69,16 +70,29 @@ class CheckoutPage extends React.Component {
             </div>
 
             <div style={{alignItems:'center', width:'100%'}}>
-                <div style={{padding:'8px 15px 0px'}}>
-                    <HelpButton/>
+                <div style={{display: 'flex'}}>
+                    <div style={{padding:'8px 15px 0px'}}>
+                        <HelpButton/>
+                    </div>
+                    <div style={{padding:'8px 15px 0px'}}>
+                        <PayCardButton/>
+                    </div>
+                </div>
+                
+                <div style={{display: 'flex'}}>
+                    <div style={{padding:'0px 15px'}}>
+                        <CancelButton/>
+                    </div>
+                    <div style={{padding:'0px 15px'}}>
+                        <PayCashButton/>
+                    </div>
                 </div>
 
-                <div style={{padding:'0px 15px'}}>
-                    <PayCardButton/>
-                </div>
-                <div style={{padding:'0px 15px'}}>
-                    <PayCashButton/>
-                </div>
+                    {/* <PayCardButton/>
+                    <PayCashButton/> */}
+
+                
+
                 <div style={{padding:'0px 15px'}}>
                     <BasicTable list_of_items={this.state.list_of_items}/>
                 </div>
@@ -87,10 +101,7 @@ class CheckoutPage extends React.Component {
                     <ItemsList items={this.state.items} />
                 </div> */}
 
-                {/* <div style={{display: 'flex', padding:'0px 15px'}}>
-                    <PayCardButton/>
-                    <PayCashButton/>
-                </div> */}
+                
 
                 {/* <div style={{padding:'0px 15px'}}>
                     <InitKiosk/>
